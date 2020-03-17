@@ -3,18 +3,18 @@ const faker = require('faker');
 
 module.exports = {
   up: (queryInterface, Sequelize) => {
-    const n = 1000;
+    const n = 87;
     const problems = [];
     for (let i = 0; i < n; i++) {
-      problems.push({
-        id: i + 1,
+      const problem = {
         title: faker.commerce.product(),
         author: faker.name.firstName() + ' ' + faker.name.lastName(),
         acs: faker.random.number({ min: 1, max: 500 }),
         tries: faker.random.number({ min: 1, max: 500 }),
         createdAt: new Date(),
         updatedAt: new Date()
-      });
+      };
+      problems.push(problem);
     }
     /*
       Add altering commands here.

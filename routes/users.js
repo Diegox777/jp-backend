@@ -7,6 +7,6 @@ router.post('/signup', userController.signup);
 
 router.post('/login', userController.login);
 
-router.get('/users', allowIfLoggedin, grantAccess('readAny', 'profile'), userController.getUsers);
+router.get('/', allowIfLoggedin, grantAccess('readAny', 'profile'), userController.getUsers);
 
 module.exports = router;

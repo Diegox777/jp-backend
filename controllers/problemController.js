@@ -1,11 +1,20 @@
-const db = require('../models');
-const Problem = db.problem;
+const models = require('../models');
+const Problem = models.problem;
+const { paginate } = require('../utils/paginate');
 
 const getProblems = async (req, res, next) => {
+    const page = req.query.page;
+    const pageSize = req.query.per_page;
+
     try {
-        const problems = await Problem.findAll();
+        const { count, rows } = await Problem.findAndCountAll({
+            where: {},
+            ...paginate({ page, pageSize })
+        });
         res.status(200).send({
-            problems
+            data: rows,
+            page: page,
+            totalCount: count
         });
     } catch (error) {
         res.status(500).json({

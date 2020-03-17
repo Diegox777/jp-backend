@@ -1,30 +1,33 @@
 
 const express = require('express');
-
+  
 const cookieParser = require('cookie-parser');
 const logger = require('morgan');
 const dotenv = require('dotenv');
 const path = require('path');
 const bodyParser = require('body-parser');
 
-const usersRouter = require('./routes/users');
+const cors = require('cors');
+
+// const usersRouter = require('./routes/users');
 const problemsRouter = require('./routes/problems');
 
-const { verifyJWT } = require('./middlewares');
+// const { verifyJWT } = require('./middlewares');
 const app = express();
 
 app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
+app.use(cors());
 // app.use(verifyJWT);
 
 dotenv.config({
   path: path.join(__dirname, './env')
 });
 
-app.use('/api', usersRouter);
-app.use('/api', problemsRouter);
+// app.use('/api/users', usersRouter);
+app.use('/api/problems', problemsRouter);
 
 // error handler
 // app.use(function(err, req, res, next) {
