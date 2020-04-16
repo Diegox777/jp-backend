@@ -23,6 +23,16 @@ const getProblems = async (req, res, next) => {
     }
 } 
 
+const createProblem = async (req, res, next) => {
+    
+    const problem = {
+        title: req.body.title,
+        author: req.body.author,
+
+    }
+}
+
 module.exports = {
-    getProblems
+    getProblems,
+    createProblem
 }
